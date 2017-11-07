@@ -112,12 +112,13 @@
     };
     var render = function render(res) {
       var ulTmpl = "";
+	  debugger;
       for (var j = 0, len2 = res.list.length; j < len2; j++) {
         var data = res.list[j].arr;
         var liTmpl = "";
         for (var i = 0, len = data.link.length; i < len; i++) {
-          var minSrc = 'http://litten.me/ins-min/' + data.link[i] + '.min.jpg';
-          var src = 'http://litten.me/ins/' + data.link[i];
+          var minSrc = './imgs/min/'+data.year+'/'+data.month+'/' + data.link[i] + '.min.jpg';
+          var src = './imgs/max/'+data.year+'/'+data.month+'/' + data.link[i];
           var type = data.type[i];
           var target = src + (type === 'video' ? '.mp4' : '.jpg');
           src += '.jpg';
@@ -170,7 +171,7 @@
       if (!searchData) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', './ins.json?t=' + +new Date(), true);
-
+debugger;
         xhr.onload = function() {
           if (this.status >= 200 && this.status < 300) {
             var res = JSON.parse(this.response);
@@ -194,6 +195,7 @@
     var Ins = {
       init: function init() {
         loadData(function(data) {
+			debugger;
           render(data);
         });
       }
